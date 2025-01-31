@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { ConnectionDatabaseComponent } from "./connection-database/connection-database.component";
+/* import { NxWelcomeComponent } from "./nx-welcome.component";
+ */import { ChatSqlComponent } from "./chat-sql/chat-sql.component";
 
 @Component({
-  imports: [NxWelcomeComponent, RouterModule],
+  imports: [RouterModule, ConnectionDatabaseComponent, /* NxWelcomeComponent, */ ChatSqlComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
