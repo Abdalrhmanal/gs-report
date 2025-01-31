@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 
@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-chat-sql',
-  imports: [ CommonModule,FormsModule],
+  imports: [ CommonModule,FormsModule ,HttpClientModule  ],
   templateUrl: './chat-sql.component.html',
   styleUrl: './chat-sql.component.css'
 })

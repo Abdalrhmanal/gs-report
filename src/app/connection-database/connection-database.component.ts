@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule here
 import { HttpClient } from '@angular/common/http';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-connection-database',
   standalone: true,
@@ -22,13 +22,15 @@ export class ConnectionDatabaseComponent {
     useSSL: false
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private router: Router) {}
 
   onSubmit() {
     this.http.post('http://localhost:3333/api/contactdb', this.connectionData)
       .subscribe(
         response => {
           console.log('Data sent successfully:', response);
+          
+          this.router.navigate(['/chat']);
           alert('Successfully connected!');
         },
         error => {
