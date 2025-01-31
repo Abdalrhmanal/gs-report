@@ -1,13 +1,29 @@
 <div class="chat-container">
-    <div class="messages">
-      <div class="message" *ngFor="let msg of messages">
-        <div [ngClass]="msg.type">{{ msg.content }}</div>
+  <div class="messages">
+    <div class="message" *ngFor="let message of messages">
+      <div [ngClass]="message.type">
+        <p>{{ message.content }}</p>
+      </div>
+
+      <div *ngIf="message.result && message.result.length > 0" class="results-table-container">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th *ngFor="let column of getColumns(message.result[0])">{{ column }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of message.result">
+              <td *ngFor="let value of row | objectValues">{{ value }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-  
-    <div class="input-area">
-      <textarea [(ngModel)]="sqlQuery" placeholder="Enter SQL query..." rows="4"></textarea>
-      <button (click)="sendQuery()">Send Query</button>
-    </div>
   </div>
-  
+
+  <div class="input-area">
+    <textarea [(ngModel)]="sqlQuery" placeholder="Enter SQL query..." rows="4"></textarea>
+    <button (click)="sendQuery()">Send Query</button>
+  </div>
+</div>

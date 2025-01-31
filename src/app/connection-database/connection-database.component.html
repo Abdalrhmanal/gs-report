@@ -1,46 +1,45 @@
 <div class="container">
-    <h2>اتصال بقاعدة البيانات</h2>
-    <form (ngSubmit)="onSubmit()" #connectionForm="ngForm">
-      <div class="form-group">
-        <label for="serverType">نوع الخادم:</label>
-        <select id="serverType" name="serverType" [(ngModel)]="connectionData.serverType" required>
-          <option value="MySQL">MySQL</option>
-          <option value="PostgreSQL">PostgreSQL</option>
-          <option value="MongoDB">MongoDB</option>
-        </select>
-      </div>
-  
-      <div class="form-group">
-        <label for="host">Host:</label>
-        <input type="text" id="host" name="host" [(ngModel)]="connectionData.host" required>
-      </div>
-  
-      <div class="form-group">
-        <label for="port">Port:</label>
-        <input type="number" id="port" name="port" [(ngModel)]="connectionData.port" required>
-      </div>
-  
-      <div class="form-group">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" [(ngModel)]="connectionData.username" required>
-      </div>
-  
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" [(ngModel)]="connectionData.password" >
-      </div>
-  
-      <div class="form-group">
-        <label for="database">Database:</label>
-        <input type="text" id="database" name="database" [(ngModel)]="connectionData.database" required>
-      </div>
-  
-      <div class="form-group">
-        <label for="useSSL">Use SSL:</label>
-        <input type="checkbox" id="useSSL" name="useSSL" [(ngModel)]="connectionData.useSSL">
-      </div>
-  
-      <button type="submit" [disabled]="!connectionForm.form.valid">اتصال</button>
-    </form>
-  </div>
-  
+  <h2 class="form-title">Connect to Database</h2>
+  <form (ngSubmit)="onSubmit()" #connectionForm="ngForm" class="connection-form">
+    <div class="form-group">
+      <label for="serverType">Server Type:</label>
+      <select id="serverType" name="serverType" [(ngModel)]="connectionData.serverType" required>
+        <option value="MySQL">MySQL</option>
+        <option value="PostgreSQL">PostgreSQL</option>
+        <option value="MongoDB">MongoDB</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="host">Host:</label>
+      <input type="text" id="host" name="host" [(ngModel)]="connectionData.host" required>
+    </div>
+
+    <div class="form-group">
+      <label for="port">Port:</label>
+      <input type="number" id="port" name="port" [(ngModel)]="connectionData.port" required>
+    </div>
+
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" [(ngModel)]="connectionData.username" required>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" [(ngModel)]="connectionData.password">
+    </div>
+
+    <div class="form-group">
+      <label for="database">Database:</label>
+      <input type="text" id="database" name="database" [(ngModel)]="connectionData.database" required>
+    </div>
+
+    <div class="form-group checkbox-group">
+      <label for="useSSL">Use SSL:</label>
+      <input type="checkbox" id="useSSL" name="useSSL" [(ngModel)]="connectionData.useSSL">
+    </div>
+
+    <button type="submit" [disabled]="!connectionForm.form.valid" class="submit-btn">Connect</button>
+  </form>
+</div>
