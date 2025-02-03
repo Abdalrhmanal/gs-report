@@ -1,23 +1,33 @@
 <div class="chat-container">
   <div class="messages">
-    <div class="message" *ngFor="let message of messages">
+    <div class="message" *ngFor="let message of messages; let i = index">
       <div [ngClass]="message.type">
         <p>{{ message.content }}</p>
       </div>
 
-      <div *ngIf="message.result && message.result.length > 0" class="results-table-container">
-        <table class="results-table">
-          <thead>
-            <tr>
-              <th *ngFor="let column of getColumns(message.result[0])">{{ column }}</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let row of message.result">
-              <td *ngFor="let value of row | objectValues">{{ value }}</td>
-            </tr>
-          </tbody>
-        </table>
+      <div *ngIf="message.result && message.result.length > 0">
+        <button (click)="toggleViewMode(i)" class="toggle-btn">
+          {{ message.isChartView ? 'عرض الجدول' : 'عرض الرسم البياني' }}
+        </button>
+
+        <div *ngIf="!message.isChartView" class="results-table-container">
+          <table class="results-table">
+            <thead>
+              <tr>
+                <th *ngFor="let column of getColumns(message.result[0])">{{ column }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of message.result">
+                <td *ngFor="let value of row | objectValues">{{ value }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div *ngIf="message.isChartView" class="chart-container">
+          <svg [attr.id]="'chart-' + i" width="500" height="300"></svg>
+        </div>
       </div>
     </div>
   </div>
