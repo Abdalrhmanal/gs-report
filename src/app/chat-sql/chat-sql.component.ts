@@ -23,7 +23,6 @@ export class ChatSqlComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     console.log();
-    
   }
 
   // إرسال الاستعلام إلى الخادم
@@ -32,7 +31,7 @@ export class ChatSqlComponent implements AfterViewInit {
       this.addMessage(this.sqlQuery, 'user');
       this.isLoading = true;
 
-      this.executeSQLQuery(this.sqlQuery).subscribe(
+      this.executeMongoQuery(this.sqlQuery).subscribe(
         (response) => {
           this.isLoading = false;
           if (response.result && Array.isArray(response.result) && response.result.length > 0) {
@@ -55,16 +54,11 @@ export class ChatSqlComponent implements AfterViewInit {
     this.messages.push({ content, type, result, isChartView });
   }
 
-  executeSQLQuery(query: string): Observable<{ result: Record<string, unknown>[] }> {
+  // إرسال استعلام إلى MongoDB
+  executeMongoQuery(query: string): Observable<{ result: Record<string, unknown>[] }> {
     const requestData = {
-      query: query,
-      serverType: 'MySQL',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: '',
-      database: 'startaxi',
-      useSSL: false
+      collectionName: query,  // الاستعلام حسب اسم المجموعة
+      filter: {}  // فلتر فارغ (يمكنك تخصيصه حسب الحاجة)
     };
     return this.http.post<{ result: Record<string, unknown>[] }>('http://localhost:3333/api/queryMongo', requestData);
   }
@@ -119,7 +113,7 @@ export class ChatSqlComponent implements AfterViewInit {
     g.append("g")
       .call(d3.axisLeft(y));
 
-      g.selectAll(".bar")
+    g.selectAll(".bar")
       .data(data)
       .enter().append("rect")
       .attr("class", "bar")
