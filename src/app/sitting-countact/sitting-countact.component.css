@@ -1,0 +1,53 @@
+.container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .db-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .tables-list {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: 8px;
+  }
+  
+  .table-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+  }
+  
+  .migrate-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .migrate-btn:hover {
+    background-color: #218838;
+  }
+  

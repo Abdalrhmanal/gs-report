@@ -1,0 +1,19 @@
+<div class="container">
+    <h2 class="title">🛠️ إعدادات الاتصال</h2>
+
+    <div class="db-info">
+        <label for="sourceDB">قاعدة البيانات المتصلة:</label>
+        <input type="text" id="sourceDB" [(ngModel)]="sourceDB" placeholder="أدخل معرف قاعدة البيانات" required>
+        <button (click)="getTables()">🔍 جلب الجداول</button>
+    </div>
+
+    <div *ngIf="tables.length > 0" class="tables-list">
+        <h3>📋 الجداول المتاحة:</h3>
+        <div *ngFor="let table of tables" class="table-item">
+            <input type="checkbox" [id]="table" [value]="table" (change)="toggleTableSelection(table)">
+            <label [for]="table">{{ table }}</label>
+        </div>
+    </div>
+
+    <button *ngIf="tables.length > 0" (click)="migrateTables()" class="migrate-btn">🚀 ترحيل البيانات</button>
+</div>

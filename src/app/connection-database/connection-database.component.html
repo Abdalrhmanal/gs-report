@@ -1,45 +1,55 @@
 <div class="container">
-  <h2 class="form-title">Connect to Database</h2>
+  <h2 class="form-title">الاتصال بقاعدة البيانات</h2>
   <form (ngSubmit)="onSubmit()" #connectionForm="ngForm" class="connection-form">
     <div class="form-group">
-      <label for="serverType">Server Type:</label>
+      <label for="serverType">نوع قاعدة البيانات:</label>
       <select id="serverType" name="serverType" [(ngModel)]="connectionData.serverType" required>
-        <option value="MySQL">MySQL</option>
-        <option value="PostgreSQL">PostgreSQL</option>
-        <option value="MongoDB">MongoDB</option>
+        <option *ngFor="let type of databaseTypes" [value]="type">{{ type }}</option>
       </select>
     </div>
 
     <div class="form-group">
-      <label for="host">Host:</label>
+      <label for="host">المضيف (Host):</label>
       <input type="text" id="host" name="host" [(ngModel)]="connectionData.host" required>
     </div>
 
     <div class="form-group">
-      <label for="port">Port:</label>
+      <label for="port">المنفذ (Port):</label>
       <input type="number" id="port" name="port" [(ngModel)]="connectionData.port" required>
     </div>
 
     <div class="form-group">
-      <label for="username">Username:</label>
+      <label for="username">اسم المستخدم:</label>
       <input type="text" id="username" name="username" [(ngModel)]="connectionData.username" required>
     </div>
 
     <div class="form-group">
-      <label for="password">Password:</label>
+      <label for="password">كلمة المرور:</label>
       <input type="password" id="password" name="password" [(ngModel)]="connectionData.password">
     </div>
 
     <div class="form-group">
-      <label for="database">Database:</label>
+      <label for="database">اسم قاعدة البيانات:</label>
       <input type="text" id="database" name="database" [(ngModel)]="connectionData.database" required>
     </div>
 
     <div class="form-group checkbox-group">
-      <label for="useSSL">Use SSL:</label>
+      <label for="useSSL">استخدام SSL:</label>
       <input type="checkbox" id="useSSL" name="useSSL" [(ngModel)]="connectionData.useSSL">
     </div>
 
-    <button type="submit" [disabled]="!connectionForm.form.valid" class="submit-btn">Connect</button>
+    <button type="submit" [disabled]="!connectionForm.form.valid" class="submit-btn">اتصال</button>
   </form>
+
+  <div *ngIf="tables.length > 0" class="tables-selection">
+    <h3>الجداول المتاحة:</h3>
+    <div class="tables-list">
+      <div *ngFor="let table of tables" class="table-item">
+        <input type="checkbox" [checked]="isSelected(table)" (change)="onTableSelectionChange(table, $event)"
+          id="{{table}}" class="table-checkbox" />
+        <label for="{{table}}" class="table-label">{{ table }}</label>
+      </div>
+    </div>
+    <button (click)="onMigrate()" [disabled]="selectedTables.length === 0" class="submit-btn">ترحيل البيانات</button>
+  </div>
 </div>

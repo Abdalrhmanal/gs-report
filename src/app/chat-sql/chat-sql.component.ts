@@ -66,7 +66,7 @@ export class ChatSqlComponent implements AfterViewInit {
       database: 'startaxi',
       useSSL: false
     };
-    return this.http.post<{ result: Record<string, unknown>[] }>('http://localhost:3333/api/query', requestData);
+    return this.http.post<{ result: Record<string, unknown>[] }>('http://localhost:3333/api/queryMongo', requestData);
   }
 
   // الحصول على أسماء الأعمدة

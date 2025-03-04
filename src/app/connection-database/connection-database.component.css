@@ -93,3 +93,75 @@ select {
 select:focus {
   border-color: #2980b9;
 }
+/* تحسين تنسيق الحاوية */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+/* عنوان النموذج */
+.form-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+/* تنسيق الجداول المتاحة */
+.tables-selection {
+  margin-top: 20px;
+}
+
+.tables-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.table-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #ecf0f1;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.table-checkbox {
+  width: 20px;
+  height: 20px;
+}
+
+.table-label {
+  font-size: 16px;
+  color: #34495e;
+  cursor: pointer;
+}
+
+/* زر الترحيل */
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #2980b9;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #3498db;
+}
+
+.submit-btn:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
