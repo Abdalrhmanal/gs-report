@@ -26,9 +26,13 @@ export class ConnectionDatabaseComponent {
   databaseTypes = ['MySQL', 'PostgreSQL', 'MongoDB'];
   tables: string[] = [];  // لحفظ أسماء الجداول
   selectedTables: string[] = [];  // الجداول التي يتم اختيارها لترحيلها
+  isConnected = false;
 
   constructor(private http: HttpClient, private router: Router) { }
-
+  disconnect() {
+    this.isConnected = false;
+  }
+  
   onSubmit() {
     this.http.post('http://localhost:3333/api/connect', { connections: [this.connectionData] })
       .subscribe(
@@ -40,6 +44,7 @@ export class ConnectionDatabaseComponent {
             if (Array.isArray(connectionResponse.connections[0].tables)) {
               this.tables = connectionResponse.connections[0].tables;  // حفظ أسماء الجداول في المتغير
               console.log("Tables:", this.tables);
+              this.isConnected = true; // ✅ تحديث حالة الاتصال بعد نجاحه
               alert('Successfully connected!');
             } else {
               alert('No tables found.');

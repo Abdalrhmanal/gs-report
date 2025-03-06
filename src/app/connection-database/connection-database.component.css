@@ -1,5 +1,5 @@
 /* Improving container layout */
-.container {
+.container-1 {
   max-width: 500px;
   margin: 0 auto;
   padding: 20px;
@@ -94,7 +94,7 @@ select:focus {
   border-color: #2980b9;
 }
 /* تحسين تنسيق الحاوية */
-.container {
+.container-1 {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
@@ -164,4 +164,37 @@ select:focus {
 .submit-btn:disabled {
   background-color: #bdc3c7;
   cursor: not-allowed;
+}
+
+/* تحسين عرض قائمة الجداول */
+.tables-selection {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: '100%';
+}
+
+/* تحديد ارتفاع القائمة وإضافة سكرول */
+.tables-container {
+  max-height: 600px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+}
+.disconnect-btn {
+  width: 100%;
+  background-color: rgb(155, 0, 0);
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.disconnect-btn:hover {
+  background-color: darkred;
 }

@@ -1,6 +1,8 @@
-<div class="container">
+<div class="container-1">
   <h2 class="form-title">الاتصال بقاعدة البيانات</h2>
-  <form (ngSubmit)="onSubmit()" #connectionForm="ngForm" class="connection-form">
+
+  <form (ngSubmit)="onSubmit()" #connectionForm="ngForm" class="connection-form" *ngIf="!isConnected">
+
     <div class="form-group">
       <label for="serverType">نوع قاعدة البيانات:</label>
       <select id="serverType" name="serverType" [(ngModel)]="connectionData.serverType" required>
@@ -40,16 +42,66 @@
 
     <button type="submit" [disabled]="!connectionForm.form.valid" class="submit-btn">اتصال</button>
   </form>
+</div>
+<div class="container">
+  <div class="row" *ngIf="isConnected">
+    <div class="col-6">
+      <div class="connection-info">
+        <h3>معلومات الاتصال</h3>
 
-  <div *ngIf="tables.length > 0" class="tables-selection">
-    <h3>الجداول المتاحة:</h3>
-    <div class="tables-list">
-      <div *ngFor="let table of tables" class="table-item">
-        <input type="checkbox" [checked]="isSelected(table)" (change)="onTableSelectionChange(table, $event)"
-          id="{{table}}" class="table-checkbox" />
-        <label for="{{table}}" class="table-label">{{ table }}</label>
+        <div class="form-group">
+          <label for="serverTypeInfo">نوع قاعدة البيانات:</label>
+          <input type="text" id="serverTypeInfo" [value]="connectionData.serverType" disabled>
+        </div>
+
+        <div class="form-group">
+          <label for="hostInfo">المضيف (Host):</label>
+          <input type="text" id="hostInfo" [value]="connectionData.host" disabled>
+        </div>
+
+        <div class="form-group">
+          <label for="portInfo">المنفذ (Port):</label>
+          <input type="number" id="portInfo" [value]="connectionData.port" disabled>
+        </div>
+
+        <div class="form-group">
+          <label for="usernameInfo">اسم المستخدم:</label>
+          <input type="text" id="usernameInfo" [value]="connectionData.username" disabled>
+        </div>
+        <div class="form-group">
+          <label for="password">كلمة المرور:</label>
+          <input type="password" id="password" [value]="connectionData.password" disabled>
+        </div>
+        <div class="form-group">
+          <label for="databaseInfo">اسم قاعدة البيانات:</label>
+          <input type="text" id="databaseInfo" [value]="connectionData.database" disabled>
+        </div>
+
+        <div class="form-group checkbox-group">
+          <label for="useSSLInfo">استخدام SSL:</label>
+          <input type="checkbox" id="useSSLInfo" [checked]="connectionData.useSSL" disabled>
+        </div>
+
+        <!-- ✅ زر قطع الاتصال -->
+        <button (click)="disconnect()" class="disconnect-btn"> قطع الاتصال بقاعدة البيانات </button>
       </div>
     </div>
-    <button (click)="onMigrate()" [disabled]="selectedTables.length === 0" class="submit-btn">ترحيل البيانات</button>
+
+    <div class="col-6">
+      <div class="tables-selection" *ngIf="tables.length > 0">
+        <h3>الجداول المتاحة:</h3>
+        <div class="tables-list">
+          <div class="tables-container">
+            <div *ngFor="let table of tables" class="table-item">
+              <input type="checkbox" [checked]="isSelected(table)" (change)="onTableSelectionChange(table, $event)"
+                id="{{table}}" class="table-checkbox" />
+              <label for="{{table}}" class="table-label">{{ table }}</label>
+            </div>
+          </div>
+        </div>
+        <button (click)="onMigrate()" [disabled]="selectedTables.length === 0" class="submit-btn">ترحيل
+          البيانات</button>
+      </div>
+    </div>
   </div>
 </div>
