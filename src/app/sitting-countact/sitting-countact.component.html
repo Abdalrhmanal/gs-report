@@ -1,19 +1,35 @@
-<div class="container">
-    <h2 class="title">🛠️ إعدادات الاتصال</h2>
+<div class="container text-center mt-5">
+    <h1 class="welcome-title">Welcome to the Smart Reporting System</h1>
+    <p class="welcome-text">
+      The Smart Reporting System allows you to connect to your system's database to transfer the tables 
+      you want to display detailed reports about the data within them, 
+      helping you make sound future decisions. 
+      You can also upload files to generate accurate analytical reports.
+    </p>
 
-    <div class="db-info">
-        <label for="sourceDB">قاعدة البيانات المتصلة:</label>
-        <input type="text" id="sourceDB" [(ngModel)]="sourceDB" placeholder="أدخل معرف قاعدة البيانات" required>
-        <button (click)="getTables()">🔍 جلب الجداول</button>
+    <div class="mt-4">
+      <button class="btn btn-primary btn-lg me-3" (click)="navigateTo('/chat')">I have a previous connection to the system</button>
+      <button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#startModal">Let's start writing reports</button>
     </div>
+</div>
 
-    <div *ngIf="tables.length > 0" class="tables-list">
-        <h3>📋 الجداول المتاحة:</h3>
-        <div *ngFor="let table of tables" class="table-item">
-            <input type="checkbox" [id]="table" [value]="table" (change)="toggleTableSelection(table)">
-            <label [for]="table">{{ table }}</label>
+<!-- Modal that opens when clicking "Let's start writing reports" -->
+<div class="modal fade" id="startModal" tabindex="-1" aria-labelledby="startModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="startModalLabel">Start Writing Reports</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Choose the data input method for the reporting system:</p>
+                <button class="btn btn-info btn-lg w-100 mb-2" (click)="navigateTo('/countacttodb')" data-bs-dismiss="modal">
+                    Connect to Database
+                </button>
+                <button class="btn btn-warning btn-lg w-100" (click)="navigateTo('/filenew')" data-bs-dismiss="modal">
+                    Upload a Specific File
+                </button>
+            </div>
         </div>
     </div>
-
-    <button *ngIf="tables.length > 0" (click)="migrateTables()" class="migrate-btn">🚀 ترحيل البيانات</button>
 </div>

@@ -1,0 +1,9 @@
+/* You can add some custom styling here if needed */
+.container {
+    max-width: 600px;
+  }
+  
+  .alert {
+    font-weight: bold;
+  }
+  
